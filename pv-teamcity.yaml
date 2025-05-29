@@ -12,4 +12,4 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/home/hipr/teamcity-data"
+    path: "/home/teamcity-data"

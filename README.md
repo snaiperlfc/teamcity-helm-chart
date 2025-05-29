@@ -2,7 +2,7 @@
 
 Этот Helm-чарт разворачивает TeamCity Server и Agent в Kubernetes с:
 
-- Поддержкой внешней PostgreSQL
+- Поддержкой PostgreSQL
 - Agent auto-registration
 - Собственным PersistentVolume
 

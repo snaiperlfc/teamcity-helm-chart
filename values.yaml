@@ -10,7 +10,7 @@ server:
     password: "securepassword"
 
   pvc:
-    existingVolume: teamcity-pv-volume
+    existingVolume: dcsreports-pv-volume
     storageClass: manual
     accessMode: ReadWriteMany
     size: 10Gi
@@ -33,3 +33,10 @@ agent:
     agentNamePrefix: "kube-agent"
 
 resources: {}
+
+postgresql:
+  enabled: true
+  database: teamcity
+  username: teamcity
+  password: securepassword
+  storage: 5Gi
