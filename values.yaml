@@ -3,14 +3,8 @@ server:
   tag: latest
   replicas: 1
 
-  externalDatabase:
-    enabled: true
-    jdbcUrl: "jdbc:postgresql://postgres-host:5432/teamcity"
-    user: "teamcity"
-    password: "securepassword"
-
   pvc:
-    existingVolume: dcsreports-pv-volume
+    existingVolume: teamcity-pv-volume
     storageClass: manual
     accessMode: ReadWriteMany
     size: 10Gi
