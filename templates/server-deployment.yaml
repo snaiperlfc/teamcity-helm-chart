@@ -21,16 +21,12 @@ spec:
             - mountPath: /data/teamcity_server/datadir
               name: data
           env:
-            - name: POSTGRES_HOST
-              value: "teamcity-postgresql"
-            - name: POSTGRES_PORT
-              value: "5432"
-            - name: POSTGRES_DB
-              value: {{ .Values.postgresql.database }}
-            - name: POSTGRES_USER
-              value: {{ .Values.postgresql.username }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgresql.password }}
+            - name: TEAMCITY_DB_URL
+              value: "jdbc:postgresql://teamcity-postgresql:5432/teamcity"
+            - name: TEAMCITY_DB_USER
+              value: "teamcity"
+            - name: TEAMCITY_DB_PASSWORD
+              value: "securepassword"
       volumes:
         - name: data
           persistentVolumeClaim:
