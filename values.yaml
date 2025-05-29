@@ -5,7 +5,7 @@ server:
 
   pvc:
     existingVolume: teamcity-pv-volume
-    storageClass: manual
+    storageClass: standard
     accessMode: ReadWriteMany
     size: 10Gi
 

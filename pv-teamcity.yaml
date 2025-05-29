@@ -3,13 +3,12 @@ kind: PersistentVolume
 metadata:
   name: teamcity-pv-volume
   labels:
-    type: local
     app: teamcity-server
 spec:
-  storageClassName: manual
+  storageClassName: standard
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/home/hipr/teamcity-data"
+    path: /home/hipr/teamcity-data
