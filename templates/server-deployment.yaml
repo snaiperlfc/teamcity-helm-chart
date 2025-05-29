@@ -21,14 +21,16 @@ spec:
             - mountPath: /data/teamcity_server/datadir
               name: data
           env:
-            - name: TEAMCITY_SERVER_MEM_OPTS
-              value: >-
-                -Dteamcity.database.type=postgres
-                -Dteamcity.database.postgres.server=teamcity-postgresql
-                -Dteamcity.database.postgres.port=5432
-                -Dteamcity.database.postgres.name={{ .Values.postgresql.database }}
-                -Dteamcity.database.postgres.user={{ .Values.postgresql.username }}
-                -Dteamcity.database.postgres.password={{ .Values.postgresql.password }}
+            - name: POSTGRES_HOST
+              value: "teamcity-postgresql"
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresql.database }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresql.username }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgresql.password }}
       volumes:
         - name: data
           persistentVolumeClaim:
