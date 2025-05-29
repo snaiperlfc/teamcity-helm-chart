@@ -13,6 +13,7 @@ server:
     enabled: true
     host: teamcity.k8s
     path: /
+    className: nginx
     annotations: {}
 
 agent:
