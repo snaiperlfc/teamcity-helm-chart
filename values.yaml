@@ -11,7 +11,7 @@ server:
 
   ingress:
     enabled: true
-    host: teamcity.k8s
+    host: teamcity.hipr.k8s
     path: /
     className: nginx
     annotations: {}
