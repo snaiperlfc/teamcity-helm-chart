@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: teamcity-data
+spec:
+  accessModes:
+    - {{ .Values.server.pvc.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.server.pvc.size }}
+  volumeName: {{ .Values.server.pvc.existingVolume }}
+  storageClassName: {{ .Values.server.pvc.storageClass }}

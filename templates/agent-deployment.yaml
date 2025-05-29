@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamcity-agent
+spec:
+  replicas: {{ .Values.agent.replicas }}
+  selector:
+    matchLabels:
+      app: teamcity-agent
+  template:
+    metadata:
+      labels:
+        app: teamcity-agent
+    spec:
+      containers:
+        - name: teamcity-agent
+          image: "{{ .Values.agent.image }}:{{ .Values.agent.tag }}"
+          env:
+            - name: SERVER_URL
+              value: "{{ .Values.agent.serverUrl }}"
+            {{- if .Values.agent.autoRegister.enabled }}
+            - name: TEAMCITY_AGENT_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: TEAMCITY_AUTH_TOKEN
+              value: "{{ .Values.agent.autoRegister.authToken }}"
+            {{- end }}

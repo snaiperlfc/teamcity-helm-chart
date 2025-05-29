@@ -1,0 +1,22 @@
+{{- if .Values.server.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: teamcity-ingress
+  annotations:
+    {{- range $key, $value := .Values.server.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  rules:
+    - host: {{ .Values.server.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.server.ingress.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: teamcity
+                port:
+                  number: 80
+{{- end }}

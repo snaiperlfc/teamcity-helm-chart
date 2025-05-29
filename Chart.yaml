@@ -1,0 +1,5 @@
+apiVersion: v2
+name: teamcity
+description: A Helm chart for deploying JetBrains TeamCity with external DB and agent auth tokens
+version: 0.1.0
+appVersion: 2024.03

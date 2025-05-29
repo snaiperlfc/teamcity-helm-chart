@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamcity-server
+spec:
+  replicas: {{ .Values.server.replicas }}
+  selector:
+    matchLabels:
+      app: teamcity-server
+  template:
+    metadata:
+      labels:
+        app: teamcity-server
+    spec:
+      containers:
+        - name: teamcity-server
+          image: "{{ .Values.server.image }}:{{ .Values.server.tag }}"
+          ports:
+            - containerPort: 8111
+          volumeMounts:
+            - mountPath: /data/teamcity_server/datadir
+              name: data
+          env:
+            {{- if .Values.server.externalDatabase.enabled }}
+            - name: TEAMCITY_SERVER_MEM_OPTS
+              value: "-Dteamcity.database.url={{ .Values.server.externalDatabase.jdbcUrl }} -Dteamcity.database.user={{ .Values.server.externalDatabase.user }} -Dteamcity.database.password={{ .Values.server.externalDatabase.password }}"
+            {{- end }}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: teamcity-data

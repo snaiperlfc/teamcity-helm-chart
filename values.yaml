@@ -1,0 +1,35 @@
+server:
+  image: jetbrains/teamcity-server
+  tag: latest
+  replicas: 1
+
+  externalDatabase:
+    enabled: true
+    jdbcUrl: "jdbc:postgresql://postgres-host:5432/teamcity"
+    user: "teamcity"
+    password: "securepassword"
+
+  pvc:
+    existingVolume: teamcity-pv-volume
+    storageClass: manual
+    accessMode: ReadWriteMany
+    size: 10Gi
+
+  ingress:
+    enabled: true
+    host: teamcity.k8s
+    path: /
+    annotations: {}
+
+agent:
+  image: jetbrains/teamcity-agent
+  tag: latest
+  replicas: 2
+  serverUrl: http://teamcity
+
+  autoRegister:
+    enabled: true
+    authToken: "my-auth-token"
+    agentNamePrefix: "kube-agent"
+
+resources: {}
