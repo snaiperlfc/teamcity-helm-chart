@@ -20,4 +20,4 @@ spec:
                 name: teamcity
                 port:
                   number: 80
-  { { - end } }
+{ { - end } }
