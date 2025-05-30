@@ -18,7 +18,7 @@ server:
 
 agent:
   image: jetbrains/teamcity-agent
-  tag: latest-docker
+  tag: latest
   replicas: 2
   serverUrl: http://teamcity
 
