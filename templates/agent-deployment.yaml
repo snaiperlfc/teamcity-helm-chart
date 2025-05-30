@@ -13,11 +13,8 @@ spec:
         app: teamcity-agent
     spec:
       containers:
-        - name: teamcity-agent
+        - name: agent
           image: "{{ .Values.agent.image }}:{{ .Values.agent.tag }}"
-          volumeMounts:
-            - name: docker-socket
-              mountPath: /var/run/docker.sock
           env:
             - name: SERVER_URL
               value: "{{ .Values.agent.serverUrl }}"
@@ -29,7 +26,11 @@ spec:
             - name: TEAMCITY_AUTH_TOKEN
               value: "{{ .Values.agent.autoRegister.authToken }}"
             {{- end }}
+          volumeMounts:
+            - mountPath: {{ .Values.dockerSocketPath }}
+              name: docker-socket
+              readOnly: true
       volumes:
         - name: docker-socket
           hostPath:
-            path: /var/run/docker.sock
+            path: {{ .Values.dockerSocketPath }}

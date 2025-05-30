@@ -14,20 +14,21 @@ server:
     host: teamcity.hipr.k8s
     path: /
     className: nginx
-    annotations: {}
+    annotations: { }
 
 agent:
   image: jetbrains/teamcity-agent
   tag: latest
-  replicas: 2
+  replicas: 1
   serverUrl: http://teamcity
-
   autoRegister:
     enabled: true
     authToken: "my-auth-token"
-    agentNamePrefix: "kube-agent"
+    agentNamePrefix: "docker-enabled-agent"
 
-resources: {}
+dockerSocketPath: /var/run/docker-kube.sock
+
+resources: { }
 
 postgresql:
   enabled: true
