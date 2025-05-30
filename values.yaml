@@ -28,6 +28,10 @@ agent:
 
 dockerSocketPath: /var/run/docker-kube.sock
 
+env:
+  - name: DOCKER_HOST
+    value: unix:///var/run/docker-kube.sock
+
 resources: { }
 
 postgresql:
