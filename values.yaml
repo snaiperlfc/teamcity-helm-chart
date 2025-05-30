@@ -16,18 +16,6 @@ server:
     className: nginx
     annotations: { }
 
-agent:
-  image: jetbrains/teamcity-agent
-  tag: latest
-  replicas: 1
-  serverUrl: http://teamcity
-  autoRegister:
-    enabled: true
-    authToken: "my-auth-token"
-    agentNamePrefix: "docker-enabled-agent"
-
-dockerSocketPath: /var/run/docker-kube.sock
-
 resources: { }
 
 postgresql:
